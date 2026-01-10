@@ -5,8 +5,8 @@ import json
 import logging
 from abc import ABC, abstractmethod
 from typing import List, Dict, Optional
-from ..models.schemas import IssueModel
-from ..llm.base_client import BaseLLMClient
+from models.schemas import IssueModel
+from llm.base_client import BaseLLMClient
 
 logger = logging.getLogger(__name__)
 

@@ -1,8 +1,8 @@
 """
 Models package - Pydantic schemas and enums
 """
-from .enums import Severity, Category, LLMProvider
-from .schemas import (
+from models.enums import Severity, Category, LLMProvider
+from models.schemas import (
     IssueModel,
     AnalysisRequest,
     AgentResult,

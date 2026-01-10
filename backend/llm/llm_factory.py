@@ -3,10 +3,10 @@ Factory pattern for LLM client creation
 """
 import logging
 from typing import Optional
-from .base_client import BaseLLMClient
-from .gemini_client import GeminiClient
-from .claude_client import ClaudeClient
-from ..models.enums import LLMProvider
+from llm.base_client import BaseLLMClient
+from llm.gemini_client import GeminiClient
+from llm.claude_client import ClaudeClient
+from models.enums import LLMProvider
 
 logger = logging.getLogger(__name__)
 
