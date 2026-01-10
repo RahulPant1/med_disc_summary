@@ -22,14 +22,40 @@ class GeminiClient(BaseLLMClient):
         """
         super().__init__(api_key)
         genai.configure(api_key=api_key)
-        # Try gemini-1.5-flash-latest as fallback if gemini-1.5-flash doesn't work
+
+        # Try different model names in order of preference
+        model_names = [
+            'gemini-1.5-flash',
+            'gemini-1.5-flash-latest',
+            'gemini-1.5-pro',
+            'gemini-pro',
+            'models/gemini-1.5-flash',
+            'models/gemini-pro'
+        ]
+
+        # Log available models for debugging
         try:
-            self.model = genai.GenerativeModel('gemini-1.5-flash-latest')
-            logger.info("Gemini client initialized with gemini-1.5-flash-latest")
+            available_models = [m.name for m in genai.list_models()]
+            logger.info(f"Available Gemini models: {available_models[:5]}")  # Show first 5
         except Exception as e:
-            logger.warning(f"Failed to use gemini-1.5-flash-latest: {e}, trying gemini-1.5-flash")
-            self.model = genai.GenerativeModel('gemini-1.5-flash')
-            logger.info("Gemini client initialized with gemini-1.5-flash")
+            logger.warning(f"Could not list models: {e}")
+
+        # Try each model name until one works
+        model_initialized = False
+        for model_name in model_names:
+            try:
+                self.model = genai.GenerativeModel(model_name)
+                # Test if model works
+                self.model_name = model_name
+                logger.info(f"Gemini client initialized with {model_name}")
+                model_initialized = True
+                break
+            except Exception as e:
+                logger.debug(f"Model {model_name} not available: {e}")
+                continue
+
+        if not model_initialized:
+            raise ValueError("Could not initialize any Gemini model. Please check your API key and available models.")
 
     async def analyze(self, prompt: str, system: Optional[str] = None) -> Dict:
         """
@@ -50,7 +76,7 @@ class GeminiClient(BaseLLMClient):
 
             return {
                 "content": response.text,
-                "model": "gemini-1.5-flash"
+                "model": self.model_name
             }
         except Exception as e:
             logger.error(f"Gemini analysis error: {str(e)}")
