@@ -1,0 +1,89 @@
+DISCHARGE SUMMARY
+
+Patient Information:
+Patient Name: Mr. Mohammad Suhaib
+UHID: 40107
+Mobile No.: 8858966062
+IPD No.: IPD-3747/25-26
+Age: 81 y 2 d
+Gender: Male
+DOA: 24-11-2025 11:19
+DOD: 27-11-2025 15:00
+Panel Name: CAPF CREDIT
+Consultant: Dr. Abhishek Vikram Singh - Cardiology
+Address: Parao, Uttar Pradesh, India
+
+Diagnosis:
+- CORONARY ARTERY DISEASE - SINGLE VESSEL DISEASE
+- CHRONIC OBSTRUCTIVE PULMONARY DISEASE
+- POST PERCUTANEOUS TRANSLUMINAL CORONARY ANGIOPLASTY -(24/11/2025)-DES (SMT TETRIFLEX 3.50 X 12 MM - RCA)
+- HYPERTENSION
+- NORMAL LV SYSTOLIC FUNCTION, LVEF= 57%
+
+Chief Complaints:
+- Dyspnea on exertion x 1 month
+- Chest pain x 1 month
+
+History of Present Illness:
+80 years old male patient (K/c/o -HTN/COPD) came in emergency with complaints of dyspnea on exertion since 1 month and chest pain since 1 month. Patient had taken some initial medicine for above complaint but condition did not improve. So he was admitted in Infinity care hospital for further treatment and management.
+
+Significant Finding at Admission Time:
+- GCS - E4V5M6
+- CVS - S1 S2 (+)
+- B.P. - 136/70 mmHg
+- PULSE - 88 b/min
+- R /R - 18/min
+- TEMP - 98.4°F
+- SPO2 - 92% ON ROOM AIR
+- CHEST - B/L – CLEAR A/E (+)
+- P/A - SOFT, NO DISTENSION
+- RBS - 140 mg/dL
+
+Course in the Hospital:
+80 years old male patient came to emergency with complaint of dyspnea on exertion since 1 month and chest pain since 1 month, all necessary investigation done. after initial evaluation and patients was admitted under Cardiology department started on iv antihypertensive, iv fluid, iv antibiotic and other supportive care was given & CAG was done on 16/10/2025 & showed Coronary Artery Disease - Single Vessel Disease as Advised for PTCA & PTCA was done on 24/11/2025. Patient was managed with treatments with continued monitoring By consultant Doctor, All baseline investigation are done & enclosed, 2D ECHO was done & showed Normal LV systolic function, LVEF = 57%. Patient responded well and condition is stable and being discharged with following advice and medication.
+
+Procedure:
+IVUS GUIDED PTCA was done on 24/11/2025 by Dr. Abhishek Vikram Singh (CARDIOLOGY)
+
+Procedure Detail:
+- RCA WAS HOOKED WITH JR 3.5 X 6F RCA LESION WAS CROSSED WITH SION BLUE GUIDE WIRE AND GUIDED IT TO THE DISTAL RCA.
+- AN INTRAVASCULAR ULTRASOUND (IVUS) RUN WAS TAKEN FROM DISTAL TO PROIMAL AND IT DISPLAYED THE SIGNIFICANT LESION OF ANOUT 70% STENOSIS.
+- STENT SMT TETRIFLEX 3.50 X 12 MM WAS DEPLOYED AT 12 ATM PRESSURE
+- STENT WAS POST DIATED WITH NC TREK 3.50 X 08 MM AT 16-18 ATM PRESSURE.
+- AFTER STENTING, AN INTRAVASCULAR ULTRASOUND RUN WAS TAKEN AND IVUS DISPLAYED THAT THE STENT WAS WELL EXPANDED IN RCA
+- POST STENTING TIMI III BLOOD FLOW WAS ACHIEVED AND STENT WERE WELL EXPANDED. NO DISSECTION WAS SEEN.
+
+Condition at the Time of Discharge:
+HE IS BEING DISCHARGED IN STABLE CONDITION.
+
+Significant Findings at Discharge:
+- GCS - E4V5M6
+- CVS - S1 S2 (+)
+- B.P. - 120/70 mmHg
+- PULSE - 72 b/min
+- R /R - 20/min
+- TEMP - Afebrile
+- SPO2 - 93% ON ROOM AIR
+- CHEST - B/L – CLEAR A/E (+)
+- P/A - SOFT, NO DISTENSION
+- FBS - 208 mg/dL
+
+Advice on Discharge:
+1. TAB. ECOSPRIN 150 MG 1 TAB. P/O 24 HOURLY (2PM)
+2. TAB. CLOPITAB 75 MG 1 TAB. P/O 12 HOURLY (9AM-9PM)
+3. TAB. ROSUVA 20 MG 1 TAB. P/O 24 HOURLY (9PM)
+4. TAB. NICORANDIL 5 MG 1 TAB. P/O 12 HOURLY (9AM-9PM)
+5. TAB. ESMO D 1 TAB. P/O 24 HOURLY (7AM) (BBF)
+6. TAB. ASCOVENT SR 200 MG 1 TAB. P/O 12 HOURLY (9AM-9PM)
+7. TAB. MONTAIR FX 1 TAB. P/O 12 HOURLY (9AM-9PM)
+8. TAB. DILZEM SR 90 MG 1 TAB. P/O 24 HOURLY (9AM)
+9. TAB. CENTRUM MEN 1 TAB. P/O 24 HOURLY (9AM)
+10. SYP. MUCAIN GEL 2 TSF P/O 8 HOURLY (8AM-2PM-10PM)
+11. SYP. DUPHALAC 20 ML P/O 24 HOURLY (9PM) (HS)
+12. MDI : LUPIHALER SEROFLO 500 MG 12 HOURLY (9AM-9PM)
+
+Follow Up:
+REVIEW AFTER 07 DAYS OR SOS
+
+When & How to Obtain Urgent Care:
+IN CASE OF ANY EMERGENCY, THEN IMMEDIATELY CONTACT INFINITY CARE HOSPITAL 24*7 ON 8303710017/8303710006
