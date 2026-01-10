@@ -22,8 +22,14 @@ class GeminiClient(BaseLLMClient):
         """
         super().__init__(api_key)
         genai.configure(api_key=api_key)
-        self.model = genai.GenerativeModel('gemini-pro')
-        logger.info("Gemini client initialized")
+        # Try gemini-1.5-flash-latest as fallback if gemini-1.5-flash doesn't work
+        try:
+            self.model = genai.GenerativeModel('gemini-1.5-flash-latest')
+            logger.info("Gemini client initialized with gemini-1.5-flash-latest")
+        except Exception as e:
+            logger.warning(f"Failed to use gemini-1.5-flash-latest: {e}, trying gemini-1.5-flash")
+            self.model = genai.GenerativeModel('gemini-1.5-flash')
+            logger.info("Gemini client initialized with gemini-1.5-flash")
 
     async def analyze(self, prompt: str, system: Optional[str] = None) -> Dict:
         """
@@ -44,7 +50,7 @@ class GeminiClient(BaseLLMClient):
 
             return {
                 "content": response.text,
-                "model": "gemini-pro"
+                "model": "gemini-1.5-flash"
             }
         except Exception as e:
             logger.error(f"Gemini analysis error: {str(e)}")
