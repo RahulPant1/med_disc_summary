@@ -28,7 +28,10 @@ if not exist "venv" (
     python -m venv venv
 )
 
-REM Activate virtual environment and start backend
+REM Set PYTHONPATH and start backend
+cd ..
+set PYTHONPATH=%CD%\backend;%PYTHONPATH%
+cd backend
 start "Backend Server" cmd /k "venv\Scripts\activate && pip install -r ../requirements.txt && uvicorn main:app --reload --port 8000"
 
 cd ..

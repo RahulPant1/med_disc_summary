@@ -45,8 +45,15 @@ if [ ! -f "venv/.installed" ]; then
     touch venv/.installed
 fi
 
-# Start backend
+# Go back to project root
+cd ..
+
+# Set PYTHONPATH to include backend directory
+export PYTHONPATH="${PWD}/backend:${PYTHONPATH}"
+
+# Start backend from project root
 echo "Backend starting on http://localhost:8000"
+cd backend
 uvicorn main:app --reload --port 8000 &
 BACKEND_PID=$!
 
