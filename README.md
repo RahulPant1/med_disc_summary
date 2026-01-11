@@ -4,12 +4,9 @@ A real-time discharge summary validation application with dual LLM support (Gemi
 
 ## Features
 
-- **5 Specialized Validation Agents**:
-  - Linguistic Quality (spelling, grammar, clarity)
-  - Structural Compliance (NABH standards, sections)
-  - Clinical Consistency (medical accuracy, safety)
-  - Terminology Standards (abbreviations, standardization)
-  - Critical Data Validation (dates, identifiers, legal requirements)
+- **2 Focused Clinical Safety Agents**:
+  - Clinical Safety Agent (medical accuracy, treatment consistency, clinical decision validation, safety protocols)
+  - Critical Data Safety Agent (patient identifiers, dates, legal requirements, data integrity)
 
 - **Dual LLM Support**: Choose between Google Gemini or Anthropic Claude
 - **Real-time Streaming**: See validation results as they're generated
@@ -36,15 +33,16 @@ A real-time discharge summary validation application with dual LLM support (Gemi
 ```
 discharge-validator-mvp/
 ├── backend/
-│   ├── agents/          # 5 validation agents
+│   ├── agents/          # 2 clinical safety agents
 │   ├── llm/             # LLM client implementations
 │   ├── cache/           # Caching layer
 │   ├── models/          # Pydantic schemas
-│   ├── utils/           # Helper functions
+│   ├── utils/           # Helper functions (hasher, report generator)
+│   ├── reports/         # Generated validation reports
 │   └── main.py          # FastAPI server
 ├── frontend/
 │   └── src/
-│       ├── components/  # React components
+│       ├── components/  # React components (Critical Safety Dashboard)
 │       ├── hooks/       # Custom React hooks
 │       └── utils/       # Frontend utilities
 └── discharge-validator-docs/  # Technical documentation
@@ -141,9 +139,9 @@ API_PORT=8000
 2. Select your preferred LLM provider (Gemini or Claude)
 3. Paste or upload a discharge summary
 4. Click "Analyze" to start validation
-5. Watch as results stream in real-time
-6. Review issues categorized by severity and agent
-7. Export results as needed
+5. Watch as results stream in real-time from both clinical safety agents
+6. Review issues in the Critical Safety Dashboard, categorized by severity
+7. Export validation reports as needed
 
 ## Testing
 
@@ -159,10 +157,11 @@ For comprehensive testing procedures, see [TESTING_GUIDE.md](./TESTING_GUIDE.md)
 
 ### Expected Results
 
-The sample discharge summary contains 10 known issues:
-- 3 HIGH severity (date inconsistencies, missing diabetes diagnosis)
-- 4 MEDIUM severity (abbreviations, polypharmacy, age mismatch)
-- 3 LOW severity (spelling errors, formatting)
+The sample discharge summary will be validated by 2 clinical safety agents:
+- **Clinical Safety Agent**: Medical accuracy, treatment consistency, clinical decisions
+- **Critical Data Safety Agent**: Patient identifiers, dates, legal requirements
+- Issues categorized by HIGH, MEDIUM, and LOW severity
+- Real-time streaming of results with critical safety dashboard
 
 ### Performance Benchmarks
 
@@ -181,14 +180,16 @@ The sample discharge summary contains 10 known issues:
 - [x] Core models and schemas
 - [x] LLM client implementations (Gemini + Claude)
 - [x] Caching layer with Redis/in-memory fallback
-- [x] All 5 agent implementations
+- [x] 2 clinical safety agent implementations
 - [x] FastAPI server with SSE streaming
+- [x] Report generation utilities
 
 ### Phase 3: Frontend Development ✅
-- [x] React components (7 components)
+- [x] React components (Critical Safety Dashboard, Issue Cards, Executive Summary)
 - [x] Streaming hooks (useStreamingAnalysis)
 - [x] UI/UX implementation with Tailwind CSS
 - [x] Real-time progressive rendering
+- [x] Safety-focused visualization components
 
 ### Phase 4: Integration & Testing ✅
 - [x] End-to-end integration
@@ -238,8 +239,10 @@ When backend is running, visit:
 ## Project Files
 
 - `backend/main.py` - FastAPI server with SSE streaming
-- `backend/agents/` - 5 specialized validation agents
+- `backend/agents/` - 2 clinical safety agents (clinical_safety, critical_data_safety)
+- `backend/utils/report_generator.py` - Validation report generation
 - `frontend/src/App.jsx` - Main React application
+- `frontend/src/components/CriticalSafetyDashboard.jsx` - Safety-focused dashboard
 - `frontend/src/hooks/useStreamingAnalysis.js` - SSE streaming hook
 - `.env` - Environment configuration (API keys)
 - `TESTING_GUIDE.md` - Comprehensive testing procedures
