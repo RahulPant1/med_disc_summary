@@ -1,7 +1,6 @@
 """
 Google Gemini LLM client implementation
 """
-import json
 import logging
 from typing import Dict, AsyncGenerator, Optional
 import google.generativeai as genai
@@ -23,56 +22,65 @@ class GeminiClient(BaseLLMClient):
         super().__init__(api_key)
         genai.configure(api_key=api_key)
 
-        # Try different model names in order of preference
+        # Updated model list for 2026 - prioritize 2.5 and 3.0 series
         model_names = [
-            'gemini-1.5-flash',
-            'gemini-1.5-flash-latest',
-            'gemini-1.5-pro',
-            'gemini-pro',
-            'models/gemini-1.5-flash',
-            'models/gemini-pro'
+            'gemini-2.5-flash',         # Current best price/performance
+            #'gemini-2.5-pro',           # Current most powerful stable
+            'gemini-3-flash-preview',   # Newest preview
+            'gemini-flash-latest'      # Auto-updating alias
         ]
 
-        # Log available models for debugging
+        # Get list of actually available models to verify existence
         try:
-            available_models = [m.name for m in genai.list_models()]
-            logger.info(f"Available Gemini models: {available_models[:5]}")  # Show first 5
+            available_models = [m.name.replace('models/', '') for m in genai.list_models()]
+            logger.info(f"Actual available Gemini models: {available_models[:10]}")  # Show first 10
         except Exception as e:
             logger.warning(f"Could not list models: {e}")
+            available_models = []
 
-        # Try each model name until one works
+        # Try each model name, verifying it exists in available models
         model_initialized = False
         for model_name in model_names:
+            # Check if model exists in available models
+            if available_models and model_name not in available_models:
+                logger.debug(f"Model {model_name} not in available models list")
+                continue
+
             try:
                 self.model = genai.GenerativeModel(model_name)
-                # Test if model works
                 self.model_name = model_name
                 logger.info(f"Gemini client initialized with {model_name}")
                 model_initialized = True
                 break
             except Exception as e:
-                logger.debug(f"Model {model_name} not available: {e}")
+                logger.debug(f"Model {model_name} initialization failed: {e}")
                 continue
 
         if not model_initialized:
-            raise ValueError("Could not initialize any Gemini model. Please check your API key and available models.")
+            raise ValueError(
+                f"Could not initialize any Gemini model. "
+                f"Tried: {model_names}. "
+                f"Available: {available_models[:5] if available_models else 'Could not fetch list'}. "
+                f"Please check your API key and google-generativeai package version (run: pip install -U google-generativeai)"
+            )
 
     async def analyze(self, prompt: str, system: Optional[str] = None) -> Dict:
         """
-        Perform synchronous analysis with Gemini
+        Perform asynchronous analysis with Gemini
 
         Args:
             prompt: The prompt to send
-            system: System instructions (prepended to prompt for Gemini)
+            system: System instructions (prepended to prompt)
 
         Returns:
             Dictionary with 'content' key containing the response
         """
         try:
-            # Combine system and prompt for Gemini
+            # Combine system and prompt if system instructions provided
             full_prompt = f"{system}\n\n{prompt}" if system else prompt
 
-            response = self.model.generate_content(full_prompt)
+            # Use async generation and await it
+            response = await self.model.generate_content_async(full_prompt)
 
             return {
                 "content": response.text,
@@ -92,18 +100,19 @@ class GeminiClient(BaseLLMClient):
 
         Args:
             prompt: The prompt to send
-            system: System instructions
+            system: System instructions (prepended to prompt)
 
         Yields:
             Text chunks as they arrive
         """
         try:
-            # Combine system and prompt for Gemini
+            # Combine system and prompt if system instructions provided
             full_prompt = f"{system}\n\n{prompt}" if system else prompt
 
-            response = self.model.generate_content(full_prompt, stream=True)
+            # Use async streaming
+            response = await self.model.generate_content_async(full_prompt, stream=True)
 
-            for chunk in response:
+            async for chunk in response:
                 if chunk.text:
                     yield chunk.text
         except Exception as e:

@@ -1,0 +1,90 @@
+{
+  "content_hash": "b9ef5cc4e820da8e4624a2a524f2b3286f8767cbc15b9546db4ae97859ebbfe1",
+  "llm_provider": "gemini",
+  "timestamp": "2026-01-11 11:58:01",
+  "summary": {
+    "total_issues": 7,
+    "high_severity_count": 6,
+    "medium_severity_count": 1,
+    "low_severity_count": 0,
+    "cache_hit_rate": 0.0,
+    "total_processing_time": 33.69129753112793,
+    "agents_completed": 2
+  },
+  "results": {
+    "clinical_safety": {
+      "issues": [
+        {
+          "category": "clinical_safety",
+          "type": "drug_diagnosis_mismatch",
+          "severity": "HIGH",
+          "location": "ADVICE ON DISCHARGE - TAB. DILZEM - SR 60 MG",
+          "current": "TAB. DILZEM - SR 60 MG 1 TAB. P/O 24 HOURLY (9AM) prescribed for a patient with Moderate LV Systolic Dysfunction (LVEF 40-45%).",
+          "suggestion": "Reconsider Diltiazem in a patient with heart failure with reduced ejection fraction (HFrEF). Non-dihydropyridine calcium channel blockers are generally contraindicated or used with extreme caution in HFrEF as they can worsen cardiac function.",
+          "explanation": "Diltiazem can depress myocardial contractility and exacerbate heart failure in patients with reduced ejection fraction, leading to clinical deterioration and increased morbidity and mortality."
+        },
+        {
+          "category": "clinical_safety",
+          "type": "drug_interaction",
+          "severity": "HIGH",
+          "location": "ADVICE ON DISCHARGE - TAB. DILZEM - SR 60 MG",
+          "current": "TAB. DILZEM - SR 60 MG prescribed concurrently with TAB. ECOSPRIN AV 75/20 MG (containing Atorvastatin).",
+          "suggestion": "Review drug interactions. Diltiazem is a strong CYP3A4 inhibitor and can significantly increase plasma concentrations of Atorvastatin. Consider an alternative calcium channel blocker, an alternative statin (e.g., Pravastatin, Rosuvastatin), or a lower dose of Atorvastatin with close monitoring.",
+          "explanation": "Concurrent use of Diltiazem with Atorvastatin can lead to dangerously elevated Atorvastatin levels, increasing the risk of severe adverse effects such as myopathy and rhabdomyolysis."
+        },
+        {
+          "category": "clinical_safety",
+          "type": "drug_interaction",
+          "severity": "HIGH",
+          "location": "ADVICE ON DISCHARGE - TAB. DILZEM - SR 60 MG",
+          "current": "TAB. DILZEM - SR 60 MG prescribed concurrently with TAB. EPTUS 25 MG (Eplerenone).",
+          "suggestion": "Review drug interactions. Diltiazem is a CYP3A4 inhibitor and can increase plasma concentrations of Eplerenone. Consider an alternative blood pressure medication, or close monitoring for hyperkalemia.",
+          "explanation": "Increased Eplerenone levels due to Diltiazem co-administration can lead to an elevated risk of hyperkalemia, which can be life-threatening, especially in patients with heart failure or renal impairment."
+        },
+        {
+          "category": "clinical_safety",
+          "type": "drug_interaction",
+          "severity": "HIGH",
+          "location": "ADVICE ON DISCHARGE - TAB. DILZEM - SR 60 MG",
+          "current": "TAB. DILZEM - SR 60 MG prescribed concurrently with TAB. ASCOVENT - SR 200 MG (Theophylline).",
+          "suggestion": "Review drug interactions. Diltiazem can increase Theophylline levels. Monitor Theophylline levels closely and adjust the dose as needed, or consider an alternative bronchodilator if Theophylline levels cannot be monitored effectively.",
+          "explanation": "Elevated Theophylline levels due to interaction with Diltiazem can lead to Theophylline toxicity, characterized by symptoms such as nausea, vomiting, arrhythmias, and seizures, which can be life-threatening."
+        },
+        {
+          "category": "clinical_safety",
+          "type": "abnormal_finding_no_action",
+          "severity": "HIGH",
+          "location": "COURSE IN THE HOSPITAL",
+          "current": "HRCT CHEST was done & showed CT features are s/o pulmonary hamartoma. No follow-up plan documented.",
+          "suggestion": "Document a clear follow-up plan for the pulmonary hamartoma identified on HRCT, including further imaging (e.g., repeat CT scan in 6-12 months) or referral to a pulmonologist/thoracic surgeon for definitive management.",
+          "explanation": "A pulmonary hamartoma, while typically benign, requires appropriate follow-up to confirm its nature, monitor for growth, or rule out malignancy, especially given the patient's history of 'Old Pulmonary Koch's'. Lack of a documented follow-up plan poses a risk of missed diagnosis or delayed intervention for potential complications or an alternative diagnosis."
+        },
+        {
+          "category": "clinical_safety",
+          "type": "abnormal_finding_no_action",
+          "severity": "HIGH",
+          "location": "SIGNIFICANT FINDINGS AT THE OF DISCHARGE",
+          "current": "PULSE - 56 b/min at discharge. No documented management plan or comment on this finding.",
+          "suggestion": "Document the clinical significance of discharge bradycardia (56 b/min), especially given the patient's admission tachycardia and the initiation of negative chronotropic medications like Diltiazem. Provide a management plan or specific monitoring instructions for the patient and family.",
+          "explanation": "Bradycardia at discharge, particularly after an episode of tachycardia and with the initiation of rate-lowering drugs, can indicate an underlying cardiac issue or medication side effect. Lack of documented action or plan increases the risk of symptomatic bradycardia, cardiac decompensation, or drug-induced adverse events post-discharge."
+        },
+        {
+          "category": "clinical_safety",
+          "type": "dangerous_polypharmacy",
+          "severity": "MEDIUM",
+          "location": "ADVICE ON DISCHARGE",
+          "current": "15 medications prescribed at discharge for a 66-year-old patient.",
+          "suggestion": "Review all medications for necessity, potential for de-prescribing, and to reduce pill burden, especially considering the patient's age and multiple comorbidities.",
+          "explanation": "Polypharmacy (>10 medications) in elderly patients increases the risk of adverse drug reactions, drug-drug interactions, prescribing cascades, medication non-adherence, and decreased quality of life."
+        }
+      ],
+      "from_cache": false,
+      "processing_time": 22.836731910705566
+    },
+    "critical_data_safety": {
+      "issues": [],
+      "from_cache": false,
+      "processing_time": 10.410625219345093
+    }
+  }
+}

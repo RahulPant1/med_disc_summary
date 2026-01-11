@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AlertCircle } from 'lucide-react';
+import { AlertCircle, Download } from 'lucide-react';
 import UploadSection from './components/UploadSection';
 import ProgressIndicator from './components/ProgressIndicator';
 import RealTimeIssueStream from './components/RealTimeIssueStream';
@@ -27,6 +27,28 @@ function App() {
   const handleClearResults = () => {
     clearResults();
     setShowResults(false);
+  };
+
+  const handleDownloadReport = async () => {
+    try {
+      const response = await fetch('/api/report/download');
+      if (!response.ok) {
+        throw new Error('Report not available');
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `validation_report_${new Date().toISOString().split('T')[0]}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (err) {
+      console.error('Failed to download report:', err);
+      alert('Failed to download report. Please try again.');
+    }
   };
 
   return (
@@ -64,7 +86,7 @@ function App() {
           <ProgressIndicator
             progress={progress}
             cacheHits={cacheHits}
-            totalAgents={5}
+            totalAgents={2}
           />
         )}
 
@@ -77,9 +99,16 @@ function App() {
               summary={summary}
             />
 
-            {/* Clear Results Button */}
+            {/* Action Buttons */}
             {summary && !loading && (
-              <div className="mt-6 flex justify-center">
+              <div className="mt-6 flex justify-center gap-4">
+                <button
+                  onClick={handleDownloadReport}
+                  className="px-6 py-3 bg-blue-600 text-white rounded-md font-medium hover:bg-blue-700 transition-colors flex items-center gap-2"
+                >
+                  <Download className="h-5 w-5" />
+                  Download Report
+                </button>
                 <button
                   onClick={handleClearResults}
                   className="px-6 py-3 bg-gray-600 text-white rounded-md font-medium hover:bg-gray-700 transition-colors"

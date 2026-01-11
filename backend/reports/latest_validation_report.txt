@@ -1,0 +1,153 @@
+================================================================================
+ DISCHARGE SUMMARY VALIDATION REPORT
+================================================================================
+
+Generated: 2026-01-11 11:58:01
+LLM Provider: GEMINI
+Processing Time: 33.69 seconds
+Content Hash: b9ef5cc4e820da8e4624a2a524f2b3286f8767cbc15b9546db4ae97859ebbfe1
+
+--------------------------------------------------------------------------------
+ EXECUTIVE SUMMARY
+--------------------------------------------------------------------------------
+
+Total Issues Found: 7
+  • HIGH Severity: 6
+  • MEDIUM Severity: 1
+  • LOW Severity: 0
+Agents Completed: 2
+Cache Hit Rate: 0.0%
+
+
+================================================================================
+ INPUT: ORIGINAL DISCHARGE SUMMARY
+================================================================================
+
+1/3/26, 10:38 PM
+NuvertOS
+Discharge Summary
+Patient Name :Mr. Ram Pukar
+Sharma
+Mobile No.
+Age
+Gender
+Panel Name
+Address
+: 9125106280
+: 66 y 9 m 30 d
+: Male
+: ESIC
+: Hukulganj Varanasi
+UHID
+: 41870
+: IPD-3807/25-26
+: 28-11-2025 01:21
+: 04-12-2025 12:55
+IPD No.
+DOA
+DOD
+Consultant :Dr. Abhishek Vikram
+Singh--
+Cardiology
+DIAGNOSIS :- 
+LOWER RESPIRATORY TRACT INFECTION (J22)
+OLD PULMONARY KOCH'S (Z86.11)
+CONGESTIVE HEART FAILURE (I50)
+ASTHMA (J45)
+HYPERTENSION (I10)
+MODERATE LV SYSTOLIC DYSFUNCTION, LVEF = 40-45%
+CHIEF COMPLAINS :
+Breathlessness
+Chest heaviness
+Cough x 7 days
+Palpitations 
+HISTORY OF PRESENT ILLNESS :
+66 years old male patient (K/c/o - ASTHMA/OLD PULMONARY KOCH'S) came in emergency with complaints of 
+Breathlessness, Chest heaviness, Cough since 7 days and Palpitations . Patient had taken some initial medicine
+for above complaint but condition did not improve. So he was admitted in Infinity care hospital for further
+treatment and management.  
+SIGNIFICANT FINDING AT ADMISSION TIME :
+GCS     - E4V5M6
+CVS     - S1 S2 (+)
+B.P.      - 143/63 mmHg
+PULSE -  193 b/min
+R /R    -  24/min
+TEMP  -  98.6°F
+SPO2   -  94% ON NIV SUPPORT
+CHEST -  B/L – CLEAR  A/E (+)        
+P/A      -  SOFT, NO DISTENSION
+RBS     -  145 mg/dL
+COURSE IN THE HOSPITAL :- 
+Patient admitted in hospital through emergency on 28.11.2025 under Cardiology department with above
+mentioned complaints. After initial evaluation, treatment initiated with iv fluids, iv antibiotics and other
+supportive treatments with continued monitoring By consultant Doctor. The patient was initially on NIV
+support. As the patient gradually improved, NIV was discontinued and the patient was shifted to intermittent
+BiPAP support. Then patient was shiffted to the ward for further management. At present, the patient is on
+room air with intermittent BiPAP support. HRCT CHEST was done & showed CT features are s/o pulmonary
+hamartoma as described above and 2D ECHO was done & showed Moderate LV systolic dysfunction, LVEF =
+40-45%. All baseline investigation is done & enclosed, Patient responded well and condition is stable and being
+discharged with following advice and medication.
+1/3
+https://nuvertos.com/his/patient/main/1021008105276/10210012817758
+1/3/26, 10:38 PM
+NuvertOS
+CONDITION AT THE TIME OF DISCHARGE :
+HE IS BEING DISCHARGED IN STABLE CONDITION.
+SIGNIFICANT FINDINGS AT THE OF DISCHARGE :
+GCS     - E4V5M6
+CVS     - S1 S2 (+)
+B.P.      - 140/80 mmHg
+PULSE -  56 b/min
+R /R    -  18/min
+TEMP  -  98.2°F
+SPO2   -  98% ON ROOM AIR
+CHEST -  B/L – CLEAR  A/E (+)        
+P/A      -  SOFT, NO DISTENSION
+RBS     -  136 mg/dL
+INVESTIGATION :
+ALL INVESTIGATIONS REPORTS ARE ATTACHED IN FILE.
+ADVICE ON DISCHARGE :
+1. TAB. CEFTUM 500 MG 1 TAB. P/O 12 HOURLY (9AM-9PM) X 5 DAYS
+2. TAB. LEVOFLOX 500 MG 1 TAB. P/O 24 HOURLY (2PM)
+3. TAB. ECOSPRIN AV 75/20 MG 1 TAB. P/O 24 HOURLY (2PM)
+4. TAB. PAN 40 MG 1 TAB. P/O 24 HOURLY (7AM) (BBF)
+5. TAB. EMESET 4 MG 1 TAB. P/O (SOS)
+6. TAB. PCM 650 MG 1 TAB. P/O (SOS)
+7. TAB. EPTUS 25 MG 1 TAB. P/O 24 HOURLY (9AM)
+8. TAB. BENZO 100 MG 1 TAB. P/O 12 HOURLY (9AM-9PM)
+9. TAB. MONTAIR FX 1 TAB. P/O 12 HOURLY (9AM-9PM)
+10. TAB. ASCOVENT - SR 200 MG 1 TAB. P/O 24 HOURLY (9AM)
+11. TAB. DILZEM - SR 60 MG 1 TAB. P/O 24 HOURLY (9AM)
+12. TAB. COBADEX CZS 1 TAB. P/O 24 HOURLY (2PM)
+13. R/C. TRIOHALE 1 CAP. P/O 24 HOURLY WITH LUPIHALER
+14. SYP. ASCORIL - LS 20 ML P/O 8 HOURLY (9AM-2PM-10PM)
+15. SYP. DUPHALAC 20 ML P/O 24 HOURLY (9PM) (HS)
+ADV.:
+BED REST FOR 1 WEEK
+INCENTIVE SPIROMETRY X 2 HOURS
+STEAM INHALATION X 6 HOURLY
+LIMB & CHEST PHYSIOTHERAPY
+FOLLOW UP :
+REVIEW AFTER 07 DAYS OR SOS
+WHEN & HOW TO OBTAIN URENT CARE:
+IN CASE OF ANY EMERGENCY , THEN IMMEDIATELY CONTACT INFINITY CARE HOSPITAL 24*7 ON
+8303710017/8303710006
+Prepared 
+By:
+Mr. Mo Saif
+Checked By
+DR. ADITYA
+Consultant signature
+Dr. Abhishek Vikram Singh
+(Infinity Care Hospital)
+( End Of Discharge Summary )
+
+
+
+================================================================================
+ OUTPUT: DETAILED VALIDATION RESULTS
+================================================================================
+
+================================================================================
+ END OF REPORT
+================================================================================

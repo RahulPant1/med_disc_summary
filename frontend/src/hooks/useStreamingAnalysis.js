@@ -55,15 +55,33 @@ export const useStreamingAnalysis = () => {
             const { done, value } = await reader.read();
 
             if (done) {
+              // Process ALL remaining events in buffer before finishing
+              if (buffer.trim()) {
+                // Use correct delimiter for the platform (Windows: \r\n\r\n, Unix: \n\n)
+                const finalDelimiter = buffer.includes('\r\n\r\n') ? '\r\n\r\n' : '\n\n';
+                const finalLines = buffer.split(finalDelimiter).filter(line => line.trim());
+
+                for (const line of finalLines) {
+                  const eventMatch = line.match(/^event: (.+)$/m);
+                  const dataMatch = line.match(/^data: (.+)$/m);
+
+                  if (eventMatch && dataMatch) {
+                    const eventType = eventMatch[1];
+                    const data = JSON.parse(dataMatch[1]);
+                    handleEvent(eventType, data);
+                  }
+                }
+              }
               setLoading(false);
               break;
             }
 
-            // Decode the chunk
-            buffer += decoder.decode(value, { stream: true });
+            const chunk = decoder.decode(value, { stream: true });
+            buffer += chunk;
 
-            // Process complete events
-            const lines = buffer.split('\n\n');
+            // Process complete events (handle both Unix \n\n and Windows \r\n\r\n)
+            const delimiter = buffer.includes('\r\n\r\n') ? '\r\n\r\n' : '\n\n';
+            const lines = buffer.split(delimiter);
             buffer = lines.pop() || '';
 
             for (const line of lines) {
@@ -76,7 +94,6 @@ export const useStreamingAnalysis = () => {
               if (eventMatch && dataMatch) {
                 const eventType = eventMatch[1];
                 const data = JSON.parse(dataMatch[1]);
-
                 handleEvent(eventType, data);
               }
             }
@@ -100,17 +117,14 @@ export const useStreamingAnalysis = () => {
   const handleEvent = (eventType, data) => {
     switch (eventType) {
       case 'started':
-        console.log('Analysis started:', data);
+        // Analysis started
         break;
 
       case 'agent_progress':
-        console.log('Agent progress:', data);
         setProgress(data.progress_percentage || 0);
         break;
 
       case 'agent_complete':
-        console.log('Agent complete:', data);
-
         // Update results with agent data
         setResults(prev => ({
           ...prev,
@@ -131,7 +145,6 @@ export const useStreamingAnalysis = () => {
         break;
 
       case 'analysis_complete':
-        console.log('Analysis complete:', data);
         setSummary(data);
         setProgress(100);
         setLoading(false);
@@ -144,7 +157,7 @@ export const useStreamingAnalysis = () => {
         break;
 
       default:
-        console.log('Unknown event:', eventType, data);
+        console.warn('Unknown event type:', eventType);
     }
   };
 

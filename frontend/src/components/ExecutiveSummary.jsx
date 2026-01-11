@@ -1,7 +1,9 @@
-import { AlertCircle, AlertTriangle, Info, Clock, Zap } from 'lucide-react';
+import { AlertCircle, AlertTriangle, Info, Clock, Zap, Database } from 'lucide-react';
 
 const ExecutiveSummary = ({ summary }) => {
   if (!summary) return null;
+
+  const isFullyCached = summary.cache_hit_rate === 100;
 
   const getRiskLevel = () => {
     if (summary.high_severity_count > 0) {
@@ -17,16 +19,29 @@ const ExecutiveSummary = ({ summary }) => {
   const risk = getRiskLevel();
 
   return (
-    <div className={`${risk.bgColor} border ${risk.borderColor} rounded-lg shadow-md p-6 mb-6`}>
-      <h2 className="text-2xl font-bold text-gray-900 mb-4">Executive Summary</h2>
-
-      {/* Overall Risk */}
-      <div className="mb-6">
-        <div className="flex items-center gap-2 mb-2">
-          <span className="text-sm font-medium text-gray-700">Overall Risk Level:</span>
-          <span className={`text-lg font-bold ${risk.color}`}>{risk.level}</span>
+    <div className="mb-6">
+      {/* HIGH RISK BANNER */}
+      {summary.high_severity_count > 0 && (
+        <div className="bg-red-100 border-l-4 border-red-600 p-4 mb-4">
+          <h2 className="text-xl font-bold text-red-800 flex items-center gap-2">
+            <AlertCircle className="h-6 w-6" />
+            HIGH RISK - {summary.high_severity_count} Critical Safety Issues Require Attention
+          </h2>
         </div>
-      </div>
+      )}
+
+      {/* Cached Results Banner */}
+      {isFullyCached && (
+        <div className="bg-blue-50 border border-blue-200 rounded-md p-3 mb-4 flex items-center gap-2">
+          <Database className="h-5 w-5 text-blue-600 flex-shrink-0" />
+          <div className="text-sm text-blue-800">
+            <span className="font-semibold">Instant Results!</span> These results were loaded from cache - no API calls needed.
+          </div>
+        </div>
+      )}
+
+      <div className={`${risk.bgColor} border ${risk.borderColor} rounded-lg shadow-md p-6`}>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Summary</h2>
 
       {/* Statistics Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
@@ -65,7 +80,7 @@ const ExecutiveSummary = ({ summary }) => {
       </div>
 
       {/* Performance Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
         {/* Processing Time */}
         <div className="bg-white rounded-lg p-4 shadow-sm">
           <div className="flex items-center gap-2 mb-1">
@@ -73,30 +88,20 @@ const ExecutiveSummary = ({ summary }) => {
             <span className="text-sm text-gray-600">Processing Time</span>
           </div>
           <div className="text-2xl font-semibold text-gray-900">
-            {summary.total_processing_time.toFixed(2)}s
+            {summary.total_processing_time.toFixed(1)}s
           </div>
         </div>
 
-        {/* Cache Hit Rate */}
+        {/* Validation Type */}
         <div className="bg-white rounded-lg p-4 shadow-sm">
           <div className="flex items-center gap-2 mb-1">
-            <Zap className="h-4 w-4 text-green-600" />
-            <span className="text-sm text-gray-600">Cache Hit Rate</span>
+            <span className="text-sm text-gray-600">Validation Type</span>
           </div>
-          <div className="text-2xl font-semibold text-green-600">
-            {summary.cache_hit_rate.toFixed(0)}%
-          </div>
-        </div>
-
-        {/* Agents Completed */}
-        <div className="bg-white rounded-lg p-4 shadow-sm">
-          <div className="flex items-center gap-2 mb-1">
-            <span className="text-sm text-gray-600">Agents Completed</span>
-          </div>
-          <div className="text-2xl font-semibold text-gray-900">
-            {summary.agents_completed}/5
+          <div className="text-lg font-semibold text-gray-900">
+            Clinical Safety Focus
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

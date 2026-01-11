@@ -3,6 +3,7 @@ Abstract base class for validation agents
 """
 import json
 import logging
+import re
 from abc import ABC, abstractmethod
 from typing import List, Dict, Optional
 from models.schemas import IssueModel
@@ -19,7 +20,11 @@ class BaseAgent(ABC):
 
     def __init__(self):
         """Initialize the agent"""
-        self.name = self.__class__.__name__.lower().replace("agent", "")
+        # Convert CamelCase to snake_case (e.g., CriticalDataAgent -> critical_data)
+        class_name = self.__class__.__name__.replace("Agent", "")
+        # Insert underscore before uppercase letters and convert to lowercase
+        snake_case_name = re.sub(r'(?<!^)(?=[A-Z])', '_', class_name).lower()
+        self.name = snake_case_name
 
     @property
     @abstractmethod

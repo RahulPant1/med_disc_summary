@@ -13,11 +13,8 @@ class Severity(str, Enum):
 
 class Category(str, Enum):
     """Validation agent categories"""
-    LINGUISTIC = "linguistic"
-    STRUCTURAL = "structural"
-    CLINICAL = "clinical"
-    TERMINOLOGY = "terminology"
-    CRITICAL_DATA = "critical_data"
+    CLINICAL_SAFETY = "clinical_safety"
+    CRITICAL_DATA_SAFETY = "critical_data_safety"
 
 
 class LLMProvider(str, Enum):

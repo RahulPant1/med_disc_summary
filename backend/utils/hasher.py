@@ -30,8 +30,8 @@ def generate_cache_key(
     # Generate SHA-256 hash of the content
     content_hash = hashlib.sha256(content.encode('utf-8')).hexdigest()[:hash_length]
 
-    # Combine provider, agent, and content hash
-    cache_key = f"{llm_provider}:{agent_name}:{content_hash}"
+    # Combine provider, agent, and content hash with v2 prefix to invalidate old cache
+    cache_key = f"v2:{llm_provider}:{agent_name}:{content_hash}"
 
     return cache_key
 
@@ -68,4 +68,5 @@ def verify_cache_key(cache_key: str) -> bool:
         True if valid format
     """
     parts = cache_key.split(":")
-    return len(parts) == 3 and all(parts)
+    # Format: v2:provider:agent:hash (4 parts) or old format provider:agent:hash (3 parts)
+    return (len(parts) == 4 and parts[0] == "v2" and all(parts)) or (len(parts) == 3 and all(parts))

@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp, AlertCircle, AlertTriangle, Info } from 'lucide-react';
+import { getIssueTypeDisplay } from '../utils/issueHelpers';
 
-const IssueCard = ({ issue }) => {
-  const [expanded, setExpanded] = useState(false);
+const IssueCard = ({ issue, autoExpanded = false }) => {
+  const [expanded, setExpanded] = useState(autoExpanded);
 
   const getSeverityConfig = (severity) => {
     switch (severity) {
@@ -60,8 +61,8 @@ const IssueCard = ({ issue }) => {
               <span className={`inline-block px-2 py-0.5 ${config.badgeBg} ${config.textColor} text-xs font-semibold rounded`}>
                 {issue.severity}
               </span>
-              <span className="text-xs text-gray-500">
-                {issue.type}
+              <span className="text-xs text-gray-600 font-medium">
+                {getIssueTypeDisplay(issue.type)}
               </span>
             </div>
             <h4 className="font-medium text-gray-900 mb-1">
