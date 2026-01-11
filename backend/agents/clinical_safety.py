@@ -12,6 +12,9 @@ class ClinicalSafetyAgent(BaseAgent):
     - Abnormal findings without action
     - Dangerous abbreviations
     - Critical clinical logic errors
+    - Discharge readiness (unresolved severe findings)
+    - Follow-up adequacy for high-risk patients
+    - Medication instruction clarity
     """
 
     @property
@@ -45,6 +48,21 @@ FOCUS EXCLUSIVELY ON:
    - Procedures not matching stated diagnosis
    - Contradictory clinical information
 
+5. Discharge Readiness (CRITICAL):
+   - Severe unresolved findings at discharge (e.g., EF <30%, severe SpO₂ issues, critical lab values)
+   - ICU-level diagnosis with minimal/unclear follow-up plan
+   - Flag ONLY if clearly unsafe to discharge - don't judge medical decisions
+
+6. Follow-up Adequacy for High-Risk Patients:
+   - High-risk patients (cardiac issues, post-ICU, critical diagnosis) without timeframe
+   - Critical diagnosis (cancer, heart failure, post-MI) without specialty follow-up mentioned
+   - Flag ONLY if clearly missing or creates safety gap
+
+7. Medication Instruction Ambiguity:
+   - Complex medication schedules without clear instructions (e.g., D5-D7 skip weekends - which days exactly?)
+   - SOS/PRN medications without clear indication or context
+   - This is about CLARITY that prevents errors, NOT prescribing
+
 IGNORE:
 - Grammar, spelling of non-medical terms
 - Sentence structure, clarity issues
@@ -53,15 +71,15 @@ IGNORE:
 - Unit variations (mg vs mgm) unless causes dosing confusion
 
 SEVERITY RULES:
-- HIGH: Direct patient safety risk (overdose, untreated critical finding, dangerous interaction, dangerous abbreviation)
-- MEDIUM: Clinical best practice (polypharmacy, documentation gaps)
+- HIGH: Direct patient safety risk (overdose, untreated critical finding, dangerous interaction, dangerous abbreviation, unsafe discharge, high-risk patient without adequate follow-up)
+- MEDIUM: Clinical best practice (polypharmacy, documentation gaps, medication instruction clarity)
 - NEVER use LOW severity
 
 Return ONLY valid JSON:
 {{
   "issues": [
     {{
-      "type": "drug_overdose|drug_diagnosis_mismatch|drug_interaction|dangerous_polypharmacy|drug_spelling_error|dangerous_abbreviation|abnormal_finding_no_action|missing_critical_diagnosis|procedure_mismatch|clinical_contradiction",
+      "type": "drug_overdose|drug_diagnosis_mismatch|drug_interaction|dangerous_polypharmacy|drug_spelling_error|dangerous_abbreviation|abnormal_finding_no_action|missing_critical_diagnosis|procedure_mismatch|clinical_contradiction|unsafe_discharge_readiness|inadequate_followup_highrisk|ambiguous_medication_instruction",
       "severity": "HIGH|MEDIUM",
       "location": "section name",
       "current": "problematic clinical data",
@@ -97,6 +115,21 @@ DISCHARGE SUMMARY:
    - Missing diagnosis for medications
    - Procedure-diagnosis mismatches
    - Contradictory information
+
+5. Discharge Readiness:
+   - Severe unresolved findings (EF <30%, critical labs)
+   - ICU-level diagnosis with unclear follow-up
+   - Flag only if clearly unsafe - don't judge decisions
+
+6. Follow-up Adequacy:
+   - High-risk patients without follow-up timeframe
+   - Critical diagnosis without specialty follow-up
+   - Flag only if creates safety gap
+
+7. Medication Instruction Clarity:
+   - Complex schedules without clear instructions
+   - SOS/PRN drugs without indication context
+   - Focus on clarity to prevent errors
 </focus_areas>
 
 <ignore>
@@ -107,8 +140,8 @@ DISCHARGE SUMMARY:
 </ignore>
 
 <severity>
-HIGH: Patient safety risk
-MEDIUM: Clinical best practice
+HIGH: Direct patient safety risk (overdose, untreated critical finding, dangerous interaction, dangerous abbreviation, unsafe discharge, high-risk patient without adequate follow-up)
+MEDIUM: Clinical best practice (polypharmacy, documentation gaps, medication instruction clarity)
 LOW: NEVER USE
 </severity>
 
@@ -116,7 +149,7 @@ LOW: NEVER USE
 {{
   "issues": [
     {{
-      "type": "drug_overdose|drug_diagnosis_mismatch|drug_interaction|dangerous_polypharmacy|drug_spelling_error|dangerous_abbreviation|abnormal_finding_no_action|missing_critical_diagnosis|procedure_mismatch|clinical_contradiction",
+      "type": "drug_overdose|drug_diagnosis_mismatch|drug_interaction|dangerous_polypharmacy|drug_spelling_error|dangerous_abbreviation|abnormal_finding_no_action|missing_critical_diagnosis|procedure_mismatch|clinical_contradiction|unsafe_discharge_readiness|inadequate_followup_highrisk|ambiguous_medication_instruction",
       "severity": "HIGH|MEDIUM",
       "location": "section name",
       "current": "problematic data",
